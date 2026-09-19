@@ -5,6 +5,7 @@ import Schedule from './components/Schedule';
 import Tasks from './components/Tasks';
 import Progress from './components/Progress';
 import Notes from './components/Notes';
+import InstallPrompt from './components/InstallPrompt';
 import { ViewType } from './types';
 
 const NAV_ITEMS = [
@@ -138,6 +139,9 @@ export default function App() {
           {renderView()}
         </div>
       </main>
+
+      {/* PWA Install Prompt */}
+      <InstallPrompt />
     </div>
   );
 }
