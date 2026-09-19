@@ -36,11 +36,20 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
 
+      - name: Install Android SDK components
+        run: |
+          sdkmanager "platforms;android-34"
+          sdkmanager "build-tools;34.0.0"
+          yes | sdkmanager --licenses || true
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build web app
         run: npm run build
+
+      - name: Clean existing Android directory
+        run: rm -rf android
 
       - name: Add Android platform
         run: npx cap add android
@@ -48,11 +57,17 @@ jobs:
       - name: Sync Capacitor
         run: npx cap sync android
 
+      - name: Make gradlew executable and set SDK path
+        run: |
+          chmod +x android/gradlew
+          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+          echo "ANDROID_HOME is: $ANDROID_HOME"
+          cat android/local.properties
+
       - name: Build APK with Gradle
         working-directory: ./android
         run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Get version from tag or input
         id: version
@@ -69,7 +84,7 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk release/DayFlow-v${{ steps.version.outputs.version }}.apk
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: release/*.apk
           name: DayFlow v${{ steps.version.outputs.version }}
