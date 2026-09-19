@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>DayFlow - Daily Planner & Task Manager | Schedule, Track & Boost Productivity</title>
+    <meta name="description" content="DayFlow helps you plan your day, manage tasks, schedule time blocks, and track progress. A free productivity app with daily, weekly & monthly reports. Install on phone or desktop." />
+    <meta name="keywords" content="daily planner, task manager, productivity app, schedule planner, time management, to-do list, progress tracker, habit tracker, goal setting, free planner app" />
+    <meta name="author" content="DayFlow" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DayFlow - Daily Planner & Task Manager" />
+    <meta property="og:description" content="Plan your day, manage tasks, and boost productivity. Free scheduling app with progress tracking, notes, and smart task management." />
+    <meta property="og:image" content="./icon.svg" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DayFlow - Daily Planner & Task Manager" />
+    <meta name="twitter:description" content="Plan your day, manage tasks, and boost productivity. Free scheduling app with progress tracking." />
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="DayFlow" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      html.light, html.light body {
+        background-color: #f9fafb !important;
+        color: #000000;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DyKAngCI.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CacU6T7b.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Register service worker for offline support
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker registered'))
+            .catch(err => console.log('Service Worker registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
