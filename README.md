@@ -9,10 +9,16 @@
 </p>
 
 <p align="center">
+  <a href="#-download-apk-android"><strong>📱 Download APK</strong></a> •
   <a href="#features">Features</a> •
-  <a href="#installation">Install</a> •
-  <a href="#convert-to-apk">Get APK</a> •
+  <a href="#-installation">Install as PWA</a> •
   <a href="#development">Development</a>
+</p>
+
+<p align="center">
+  <a href="../../releases/latest">
+    <img src="https://img.shields.io/github/v/release/YOUR_USERNAME/YOUR_REPO?label=Latest%20APK&style=for-the-badge&color=6366f1" alt="Latest APK Release" />
+  </a>
 </p>
 
 ---
@@ -102,58 +108,70 @@ Simply visit the deployed URL and use DayFlow directly in your web browser. All 
 
 ---
 
-## 📦 Convert to APK (Android)
+## 📦 Download APK (Android)
 
-Want a real Android APK file? Here's how to convert DayFlow into an installable APK — **no coding required!**
+### ⭐ Easiest Method: Download from GitHub Releases
 
-### Method 1: PWABuilder (Easiest - No Coding)
+**The APK is automatically built and available for download!**
 
-[PWABuilder](https://www.pwabuilder.com/) is a free tool by Microsoft that converts web apps to APKs.
+1. Go to your GitHub repository
+2. Click on **"Releases"** (right sidebar)
+3. Click the latest release (e.g., `v1.0.0`)
+4. Under **"Assets"**, click **`DayFlow-v1.0.0.apk`** to download
+5. Transfer the APK to your Android phone and install!
 
-1. **Deploy DayFlow** to a URL (see [Deployment](#deployment) below)
-2. Go to [pwabuilder.com](https://www.pwabuilder.com/)
-3. Enter your deployed URL
-4. Click **"Package for Stores"** → **"Android"**
-5. Download the generated APK file
-6. Transfer to your phone and install!
+### 🚀 How to Create a New APK Release
 
-### Method 2: Bubblewrap (Advanced)
+Every time you want a new APK version:
 
-[Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) is Google's official tool for creating Trusted Web Activities (TWAs).
+**Option A: Using GitHub UI (No coding)**
+1. Go to your repo on GitHub
+2. Click **"Releases"** → **"Create a new release"**
+3. Click **"Choose a tag"** → type `v1.0.0` (or next version) → click **"Create new tag"**
+4. Click **"Publish release"**
+5. ⏳ Wait ~5 minutes for the APK to build automatically
+6. The APK will appear in the release assets!
 
+**Option B: Using Git command line**
 ```bash
-# Install Bubblewrap
-npm i -g @bubblewrap/cli
-
-# Initialize with your deployed URL
-bubblewrap init --manifest=https://your-domain.com/manifest.json
-
-# Build the APK
-bubblewrap build
+git tag v1.0.0
+git push origin v1.0.0
 ```
 
-### Method 3: Capacitor (For Custom Builds)
+That's it! GitHub Actions will automatically build the APK and attach it to the release.
 
-If you want to customize the native app further:
+### 📲 Installing the APK on Your Phone
+
+1. Download the `.apk` file from GitHub Releases
+2. Transfer to your Android phone (via USB, email, cloud storage, etc.)
+3. Open the file on your phone
+4. If prompted, enable **"Install from unknown sources"** in Settings
+5. Tap **"Install"**
+6. Open DayFlow from your app drawer!
+
+### 🔧 Alternative: Build APK Manually
+
+If you want to customize the app or build locally:
 
 ```bash
-# Install Capacitor
-npm install @capacitor/core @capacitor/cli
-npx cap init DayFlow com.dayflow.app
+# Install dependencies
+npm install
 
-# Add Android platform
-npm install @capacitor/android
+# Build the web app
+npm run build
+
+# Add Android platform (first time only)
 npx cap add android
 
-# Build and sync
-npm run build
-npx cap sync
+# Sync web app with Android
+npx cap sync android
 
-# Open in Android Studio
-npx cap open android
+# Build APK
+cd android
+./gradlew assembleDebug
+
+# APK will be at: android/app/build/outputs/apk/debug/app-debug.apk
 ```
-
-Then build the APK from Android Studio.
 
 ---
 

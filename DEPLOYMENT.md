@@ -59,23 +59,36 @@ Once deployed, you can install DayFlow on your phone:
 
 ---
 
-## 🔄 Convert to APK (Android)
+## 📱 Download APK (Android)
 
-Want a real Android APK file?
+### ⭐ The APK is automatically built for you!
 
-### Option 1: PWABuilder (Easiest)
-1. Deploy your app to GitHub Pages (see above)
-2. Go to [pwabuilder.com](https://www.pwabuilder.com/)
-3. Enter your GitHub Pages URL
-4. Click "Package for Stores" → "Android"
-5. Download the APK
+**Every time you create a release tag, a new APK is generated and available for download.**
 
-### Option 2: Bubblewrap (Advanced)
+### How to get the APK:
+
+1. **Go to your GitHub repository**
+2. **Click "Releases"** (in the right sidebar)
+3. **Click "Create a new release"**
+4. **Create a tag** like `v1.0.0`
+5. **Click "Publish release"**
+6. **Wait ~5 minutes** for GitHub Actions to build the APK
+7. **Download the APK** from the release assets!
+
+### Or use Git command line:
 ```bash
-npm i -g @bubblewrap/cli
-bubblewrap init --manifest=https://yourusername.github.io/repo-name/manifest.json
-bubblewrap build
+git tag v1.0.0
+git push origin v1.0.0
 ```
+
+The APK will automatically appear in the Releases section!
+
+### Install on your phone:
+1. Download the `.apk` file from GitHub Releases
+2. Transfer to your Android phone
+3. Open the file and install
+4. Enable "Install from unknown sources" if prompted
+5. Done! DayFlow is now on your phone!
 
 ---
 
