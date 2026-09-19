@@ -1,19 +1,20 @@
 const CACHE_NAME = 'dayflow-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon.svg'
+  './',
+  './index.html',
+  './manifest.json',
+  './icon.svg'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
+        console.log('DayFlow: Cache opened');
         return cache.addAll(urlsToCache);
       })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener('fetch', event => {
@@ -35,7 +36,10 @@ self.addEventListener('fetch', event => {
               });
             return response;
           }
-        );
+        ).catch(() => {
+          // Offline fallback
+          return caches.match('./index.html');
+        });
       })
   );
 });
@@ -52,4 +56,5 @@ self.addEventListener('activate', event => {
       );
     })
   );
+  self.clients.claim();
 });

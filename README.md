@@ -161,33 +161,26 @@ Then build the APK from Android Studio.
 
 Deploy DayFlow to make it accessible from anywhere:
 
-### GitHub Pages (Free)
+### GitHub Pages (Free — Automatic!)
 
-1. Push this repo to GitHub
-2. Go to **Settings** → **Pages**
-3. Select **GitHub Actions** as the source
-4. Create `.github/workflows/deploy.yml`:
+The repo already includes a GitHub Actions workflow that handles everything:
 
-```yaml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm install
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-```
+1. **Push this repo to GitHub**
+2. **That's it!** The workflow will automatically:
+   - Build the app
+   - Create a `gh-pages` branch
+   - Deploy your site
+
+3. Your app will be live at: `https://yourusername.github.io/repo-name/`
+
+**First-time setup (if deployment doesn't start):**
+1. Go to your repo on GitHub
+2. Click **Settings** → **Pages**
+3. Under "Source", select **"Deploy from a branch"**
+4. Select branch: **`gh-pages`** / folder: **`/ (root)`**
+5. Click **Save**
+
+> 💡 The workflow runs automatically on every push to `main`. No manual setup needed after the first deployment!
 
 ### Vercel (Free)
 
