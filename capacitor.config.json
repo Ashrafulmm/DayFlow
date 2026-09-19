@@ -2,7 +2,6 @@
   "appId": "com.dayflow.app",
   "appName": "DayFlow",
   "webDir": "dist",
-  "bundledWebRuntime": false,
   "server": {
     "androidScheme": "https"
   },
