@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { format, isToday, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { CheckCircle2, Clock, ListTodo, TrendingUp, Zap, Calendar } from 'lucide-react';
 import { Task, ScheduleBlock } from '../types';
 import { getTasks, getSchedule } from '../store';
